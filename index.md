@@ -1,5 +1,5 @@
 <h1>Últimos Posts</h1>
-
+{% include analytics.html %}
 <ul>
   {% for post in site.posts %}
     <li>
