@@ -10,9 +10,7 @@ categories: bayes
 <img src="{{site.url}}/assets/img/download.png">
 </div>
 
-TensorFlow 2.0 was announced along with the new TFP library. I cannot overemphasize how excited I was for the news, as I am currently learning the theoretical aspects of bayesian machine learning methods. But after reading their post I was not sure about what where they doing.
-
-Since I am old fashion, I will take it step by step to understand this powerful tool and the consequences it could have to the possible models I might develop.
+The aim of this post is to motivate the bayesian framework for linear regression which, I believe, sheds a light on the frequentist view of linear regression
 
 ## Linear Regression and Basis Functions
 A regression function is one that maps an $M$-dimensional input vector $\bf x$ to a $k$-dimensional output vector $\bf t$.
