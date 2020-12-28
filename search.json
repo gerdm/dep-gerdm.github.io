@@ -1,0 +1,69 @@
+[
+  
+    {
+
+      "title"    : "The Student&#39;s t-Distribution: A financial approach",
+      "url"      : "/2020/12/27/student",
+      "category" : "",
+      "tags"     : "statistic, finance",
+      "date"     : "2020-12-27 00:00:00 +0000",
+      "description" : ""
+
+    } ,
+  
+    {
+
+      "title"    : "A journey through Pattern Recognition and Machine Learning",
+      "url"      : "/2020/09/10/prml",
+      "category" : "",
+      "tags"     : "data-analysis, personal",
+      "date"     : "2020-09-10 00:00:00 +0100",
+      "description" : ""
+
+    } ,
+  
+    {
+
+      "title"    : "Volatility Models and Machine Learning",
+      "url"      : "/2020/04/06/vol-models",
+      "category" : "",
+      "tags"     : "machine-learning, finance",
+      "date"     : "2020-04-06 00:00:00 +0100",
+      "description" : ""
+
+    } ,
+  
+    {
+
+      "title"    : "Machine Learning desde una perspectiva Probabilística Pt.2",
+      "url"      : "/2020/03/05/proba-ml-2",
+      "category" : "",
+      "tags"     : "machine-learning, bayes",
+      "date"     : "2020-03-05 00:00:00 +0000",
+      "description" : ""
+
+    } ,
+  
+    {
+
+      "title"    : "Machine Learning desde una perspectiva Probabilística Pt.1",
+      "url"      : "/2020/01/05/proba-ml-1",
+      "category" : "",
+      "tags"     : "machine-learning, bayes",
+      "date"     : "2020-01-05 00:00:00 +0000",
+      "description" : ""
+
+    } ,
+  
+    {
+
+      "title"    : "Naive Bayes",
+      "url"      : "/2019/12/20/naive-bayes",
+      "category" : "",
+      "tags"     : "machine-learning, nlp",
+      "date"     : "2019-12-20 00:00:00 +0000",
+      "description" : ""
+
+    } 
+  
+]
