@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Gerardo</title>
- <link href="http://0.0.0.0:3000/atom.xml" rel="self"/>
- <link href="http://0.0.0.0:3000/"/>
- <updated>2021-01-04T07:42:47+00:00</updated>
- <id>http://0.0.0.0:3000</id>
+ <link href="/atom.xml" rel="self"/>
+ <link href="/"/>
+ <updated>2021-06-06T14:47:36+01:00</updated>
+ <id></id>
  <author>
    <name>Gerardo</name>
    <email></email>
@@ -13,10 +13,122 @@
 
  
  <entry>
+   <title>Google Summer of Code: week 0</title>
+   <link href="/2021/06/06/gsoc0"/>
+   <updated>2021-06-06T00:00:00+01:00</updated>
+   <id>/2021/06/06/gsoc0</id>
+   <content type="html">&lt;p&gt;This week marked the end of week 0 of the 2021 Google Summer of Code (GSoC). This year, I got accepted to work on the “Converting ML Matlab Examples to Python using JAX” under the Tensorflow organization. The goal of the project is to &lt;a href=&quot;https://github.com/probml/pyprobml&quot;&gt;translate machine learning Matlab code to Python/Jax&lt;/a&gt; for Kevin Murphy’s second volume of his upcoming book “Probabilistic Machine Learning: Advanced Topics”.&lt;/p&gt;
+
+&lt;p&gt;According to GSoC’s calendar, the first two weeks of GSoC are for “community bonding”. In fact, it is written that&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;[the students, if accepted] spend a few weeks integrating with their organizations prior to the start of coding. Students then have 10 weeks to code, meeting the deadlines agreed upon with their mentors.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It turns out that for the project I’m working on, the first two weeks of community bonding have been full of communication and &lt;strong&gt;lots&lt;/strong&gt; of code. Our mentors, Kevin Murphy and  Mahmoud Soliman have made of the first two weeks challenging but rewarding.&lt;/p&gt;
+
+&lt;p&gt;In what follows, I will give a brief overview of the things I learned, PRs I made, and graphs I plotted during my first two weeks.&lt;/p&gt;
+
+&lt;h2 id=&quot;a-summary-of-the-past-two-weeks&quot;&gt;A summary of the past two weeks&lt;/h2&gt;
+
+&lt;h3 id=&quot;kalman-filters&quot;&gt;Kalman Filters&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/wkpiotN.png&quot; alt=&quot;kalman-filter-demo&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One of the main challenges these past two weeks has been the creation of a small Kalman Filter library that uses Jax. In &lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/kalman_tracking_demo.py&quot;&gt;this demo&lt;/a&gt;, we used Jax to simulate a &lt;em&gt;firework&lt;/em&gt; that moves at varying speed. We then compare the estimated trajectory given by the Kalman Filter equations v.s. the Kalman Smoothing equations.&lt;/p&gt;
+
+&lt;p&gt;At the beginning I wasn’t too sure why it was decided to use Jax given that we require for-loops to compute the Kalman Filters. However, it all payed off once we used Jax’s &lt;code&gt;vmap&lt;/code&gt; for an impresive increase in speedup (see last subsection for more information).&lt;/p&gt;
+
+&lt;p&gt;Files&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/kalman_tracking_demo.py&quot;&gt;scripts/kalman_tracking_demo.py&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/linear_dynamical_systems_lib.py&quot;&gt;scripts/linear_dynamical_systems.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mcmc-sampling&quot;&gt;MCMC Sampling&lt;/h3&gt;
+&lt;p float=&quot;left&quot;&gt;
+  &lt;img src=&quot;https://imgur.com/gsII0y3.png&quot; width=&quot;220&quot; /&gt;
+  &lt;img src=&quot;https://imgur.com/80AW1N5.png&quot; width=&quot;220&quot; /&gt; 
+  &lt;img src=&quot;https://imgur.com/rEatXsy.png&quot; width=&quot;220&quot; /&gt;
+  &lt;img src=&quot;https://imgur.com/ed1KC6J.png&quot; width=&quot;220&quot; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Although most of the issues/figures to work on were asigned to us. I decided to self-assign the MCMC demo to me.&lt;/p&gt;
+
+&lt;p&gt;The plots above prefectly portray what is really happening in Gibbs and Metropolis-Hastings sampling. It’s a clear representation that these two methods of MCMC sampling return autocorrelated samples, which may be undesirable if we want to simulate an i.i.d. process. Furthermore, we can see the effect of the step-size in a run of the HM sampling algorithm.&lt;/p&gt;
+
+&lt;p&gt;Files&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/mcmc_gmm_demo.py&quot;&gt;scripts/mcmc_gmm_demo.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;occasionally-dishonest-casino&quot;&gt;Occasionally Dishonest Casino&lt;/h3&gt;
+
+&lt;p float=&quot;left&quot;&gt;
+  &lt;img src=&quot;https://imgur.com/p9RUU6r.png&quot; width=&quot;220&quot; /&gt; 
+  &lt;img src=&quot;https://imgur.com/6hkqR7n.png&quot; width=&quot;220&quot; /&gt; 
+  &lt;img src=&quot;https://imgur.com/A37Dgsu.png&quot; width=&quot;220&quot; /&gt; 
+&lt;/p&gt;
+
+&lt;p&gt;This has been one of my favorite examples so far. In an ocassionally dishonest casino, we assume that every time we throw a die, there is a certain proabbility that the die will either be biased –in which case, the probability of landing a 6 is 5/10 and all other numbers 1/10–, or be unbiased, i.e., every number has an equal 1/6 probability. The goal was to use a Hidden Markov Model (HMM) to recover the times in which the die was biased given that we only have the history of the numbers that appeared under the throw of a dice:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;x: 666333434452361543336162146653316146656663144434652652444446
+z: 222222221111111111111111111111111112222222222222222211111111
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The first plot (above) is the equivalent of the Kalman-Filter equation of a Hidden Markov Model. It tries to recover in real time whether a certain observation, conditional on previous observations, belongs to the biased state or the unbiased state. The second figure is the smoothing part that allows us to retroactively analyze whether any given throw is biased or unbiased. Finally, the last plot shows the most likely path using the Viterbi algorithm.&lt;/p&gt;
+
+&lt;p&gt;Files&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/hmm_casino_demo.py&quot;&gt;scripts/hmm_casino_demo.py&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/hmm_lib.py&quot;&gt;scripts/hmm_lib.py&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;more-kalman-filtering-fireworks&quot;&gt;More Kalman Filtering: Fireworks&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/Xidy1Gq.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The highlight of week zero for me came with Kevin’s proposal that we use Jax’s &lt;code&gt;vmap&lt;/code&gt; function to speedup the Kalman Filter demo that I previously wrote. The goal was to run the Kalman Filter for 20 “fireworks” simultaneously. I was impressed to see that the speedup was around 80% using &lt;code&gt;vmap&lt;/code&gt; on a Google Colab 2-core machine than using a for loop over simulations. The following was the result:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;%%time
+key = random.PRNGKey(27182)
+for n in range(n_samples):
+  lds_instance = lds.LinearDynamicalSystem(A, C, Q, R, μ0, Σ0, n_steps)
+  result = sample_filter_smooth(key, lds_instance)
+
+&amp;gt; CPU times: user 10.8 s, sys: 1.18 s, total: 12 s
+&amp;gt; Wall time: 9.93 s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;%%time
+key = random.PRNGKey(27182)
+lds_instance = lds.ParallelLinearDynamicalSystem(A, C, Q, R, μ0, Σ0, n_steps)
+result = sample_filter_smooth(key, lds_instance, n_samples, True)
+
+&amp;gt; CPU times: user 1.49 s, sys: 70.4 ms, total: 1.57 s
+&amp;gt; Wall time: 1.44 s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Files&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/linear_dynamical_systems_lib.py&quot;&gt;scripts/linear_dynamical_systems.py&lt;/a&gt; (&lt;code&gt;vmap&lt;/code&gt; version currently under review)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;parallel_kalman_filter.py&lt;/a&gt; (Currently under review)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;more-kalman-filtering-imaginary-eigenvalue-systems&quot;&gt;More Kalman Filtering: Imaginary-Eigenvalue systems&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/aYxc01X.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One final application of the Kalman Filters that I worked on these past week consists in modeling a linear dynamical system with imaginary eigenvalues. Even though the observations may seem to stem from a nonlinear system, the system stills follows a linear evoluation over time, it follows that the Kalman Filter should work, and so it does!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;&quot;&gt;spiral_kalman_filter.py&lt;/a&gt; (Currently under development)&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>The Student&apos;s t-Distribution: A financial approach</title>
-   <link href="http://0.0.0.0:3000/2020/12/27/student"/>
+   <link href="/2020/12/27/student"/>
    <updated>2020-12-27T00:00:00+00:00</updated>
-   <id>http://0.0.0.0:3000/2020/12/27/student</id>
+   <id>/2020/12/27/student</id>
    <content type="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&quot; integrity=&quot;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&quot; crossorigin=&quot;anonymous&quot; /&gt;
 
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
@@ -169,9 +281,9 @@ p(r) = \frac{\Gamma(\nu/2 + 1/2)}{\Gamma(\nu/2)\sqrt{2\pi}}\left(\frac{2\lambda}
  
  <entry>
    <title>A journey through Pattern Recognition and Machine Learning</title>
-   <link href="http://0.0.0.0:3000/2020/09/10/prml"/>
+   <link href="/2020/09/10/prml"/>
    <updated>2020-09-10T00:00:00+01:00</updated>
-   <id>http://0.0.0.0:3000/2020/09/10/prml</id>
+   <id>/2020/09/10/prml</id>
    <content type="html">&lt;p&gt;On July 10, 2018  I committed myself to read and do all the exercises of the book Pattern Recognition and Machine Learning from Christopher Bishop. After seven hundred and ninety two days, I can finally say I accomplished my goal.&lt;/p&gt;
 
 &lt;p&gt;One of the main reasons why I decided to study the book from cover to cover was to demystify machine learning (ML). Reading through the book taught me to question the underlying assumptions behind every model, to understand from a mathematical point of view why some models fail, and to not fret the mathematics behind ML. Most importantly, I understood why ML is hard, to be humbled by it and to not take models as recipes that we can use as we please.&lt;/p&gt;
@@ -286,9 +398,9 @@ Name: study-hours, dtype: float64
  
  <entry>
    <title>Volatility Models and Machine Learning</title>
-   <link href="http://0.0.0.0:3000/2020/04/06/vol-models"/>
+   <link href="/2020/04/06/vol-models"/>
    <updated>2020-04-06T00:00:00+01:00</updated>
-   <id>http://0.0.0.0:3000/2020/04/06/vol-models</id>
+   <id>/2020/04/06/vol-models</id>
    <content type="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&quot; integrity=&quot;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&quot; crossorigin=&quot;anonymous&quot; /&gt;
 
 &lt;p&gt;Uncertainty in the markets can be represented as a function of price fluctuation. The greater the price of an asset can change between any two periods of time, the less certain one can be about the future value of that asset.&lt;/p&gt;
@@ -492,9 +604,9 @@ readily straightforward since every &lt;span class=&quot;katex&quot;&gt;&lt;span
  
  <entry>
    <title>Machine Learning desde una perspectiva Probabilística Pt.2</title>
-   <link href="http://0.0.0.0:3000/2020/03/05/proba-ml-2"/>
+   <link href="/2020/03/05/proba-ml-2"/>
    <updated>2020-03-05T00:00:00+00:00</updated>
-   <id>http://0.0.0.0:3000/2020/03/05/proba-ml-2</id>
+   <id>/2020/03/05/proba-ml-2</id>
    <content type="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&quot; integrity=&quot;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&quot; crossorigin=&quot;anonymous&quot; /&gt;
 
 &lt;h2 id=&quot;introducción&quot;&gt;Introducción&lt;/h2&gt;
@@ -594,9 +706,9 @@ p(\mathcal{D}|\bold{w}) = \prod_{n=1}^N \mathcal{N}\left(t_n | \bold w^T \phi(\b
  
  <entry>
    <title>Machine Learning desde una perspectiva Probabilística Pt.1</title>
-   <link href="http://0.0.0.0:3000/2020/01/05/proba-ml-1"/>
+   <link href="/2020/01/05/proba-ml-1"/>
    <updated>2020-01-05T00:00:00+00:00</updated>
-   <id>http://0.0.0.0:3000/2020/01/05/proba-ml-1</id>
+   <id>/2020/01/05/proba-ml-1</id>
    <content type="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&quot; integrity=&quot;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&quot; crossorigin=&quot;anonymous&quot; /&gt;
 
 &lt;p&gt;&lt;span class=&quot;katex-display&quot;&gt;&lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&quot;script&quot;&gt;D&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi mathvariant=&quot;bold&quot;&gt;x&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi&gt;β&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;∫&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi mathvariant=&quot;bold&quot;&gt;w&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;∣&lt;/mi&gt;&lt;mi&gt;α&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi mathvariant=&quot;script&quot;&gt;D&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi mathvariant=&quot;normal&quot;&gt;∣&lt;/mi&gt;&lt;mi mathvariant=&quot;bold&quot;&gt;x&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi mathvariant=&quot;bold&quot;&gt;w&lt;/mi&gt;&lt;mo separator=&quot;true&quot;&gt;,&lt;/mo&gt;&lt;mi&gt;β&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi mathvariant=&quot;bold&quot;&gt;w&lt;/mi&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;
@@ -744,9 +856,9 @@ p(\mathcal D | \bold w) &amp;amp;= \prod_{n=1}^N p(t_n|{\bold w}, \bold x_n)\\
  
  <entry>
    <title>Naive Bayes</title>
-   <link href="http://0.0.0.0:3000/2019/12/20/naive-bayes"/>
+   <link href="/2019/12/20/naive-bayes"/>
    <updated>2019-12-20T00:00:00+00:00</updated>
-   <id>http://0.0.0.0:3000/2019/12/20/naive-bayes</id>
+   <id>/2019/12/20/naive-bayes</id>
    <content type="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css&quot; integrity=&quot;sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq&quot; crossorigin=&quot;anonymous&quot; /&gt;
 
 &lt;p&gt;Naive Bayes es un modelo de machine learning para clasificar textos entre una serie de categorías. Ejemplos de esto podrían ser libros de un autor, &lt;em&gt;tweets&lt;/em&gt; de alguna persona, diálogos de personajes dentro de un texto, etc.&lt;/p&gt;
