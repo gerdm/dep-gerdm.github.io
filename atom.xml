@@ -4,7 +4,7 @@
  <title>Gerardo</title>
  <link href="/atom.xml" rel="self"/>
  <link href="/"/>
- <updated>2021-06-13T19:56:47+01:00</updated>
+ <updated>2021-06-13T20:06:11+01:00</updated>
  <id></id>
  <author>
    <name>Gerardo</name>
@@ -135,7 +135,7 @@ Sigma1 = (I - K1 @ self.C) @ self.Sigma0
 
 &lt;p&gt;One of the main challenges these past two weeks has been the creation of a small Kalman Filter library that uses Jax. In &lt;a href=&quot;https://github.com/probml/pyprobml/blob/master/scripts/kalman_tracking_demo.py&quot;&gt;this demo&lt;/a&gt;, we used Jax to simulate a &lt;em&gt;firework&lt;/em&gt; that moves at varying speed. We then compare the estimated trajectory given by the Kalman Filter equations v.s. the Kalman Smoothing equations.&lt;/p&gt;
 
-&lt;p&gt;At the beginning I wasn’t too sure why it was decided to use Jax given that we require for-loops to compute the Kalman Filters. However, it all payed off once we used Jax’s &lt;code&gt;vmap&lt;/code&gt; for an impresive increase in speedup (see last subsection for more information).&lt;/p&gt;
+&lt;p&gt;At the beginning I wasn’t too sure why it was decided to use Jax given that we require for-loops to compute the Kalman Filters. However, it all pay off once we used Jax’s &lt;code&gt;vmap&lt;/code&gt; for an impressive increase in speedup (see last subsection for more information).&lt;/p&gt;
 
 &lt;p&gt;Files&lt;/p&gt;
 &lt;ul&gt;
@@ -151,9 +151,9 @@ Sigma1 = (I - K1 @ self.C) @ self.Sigma0
   &lt;img src=&quot;https://imgur.com/ed1KC6J.png&quot; width=&quot;220&quot; /&gt;
 &lt;/p&gt;
 
-&lt;p&gt;Although most of the issues/figures to work on were asigned to us. I decided to self-assign the MCMC demo to me.&lt;/p&gt;
+&lt;p&gt;Although most of the issues/figures to work on were assigned to us. I decided to self-assign the MCMC demo to me.&lt;/p&gt;
 
-&lt;p&gt;The plots above prefectly portray what is really happening in Gibbs and Metropolis-Hastings sampling. It’s a clear representation that these two methods of MCMC sampling return autocorrelated samples, which may be undesirable if we want to simulate an i.i.d. process. Furthermore, we can see the effect of the step-size in a run of the HM sampling algorithm.&lt;/p&gt;
+&lt;p&gt;The plots above perfectly portray what is really happening in Gibbs and Metropolis-Hastings sampling. It’s a clear representation that these two methods of MCMC sampling return autocorrelated samples, which may be undesirable if we want to simulate an i.i.d. process. Furthermore, we can see the effect of the step-size in a run of the HM sampling algorithm.&lt;/p&gt;
 
 &lt;p&gt;Files&lt;/p&gt;
 &lt;ul&gt;
@@ -168,7 +168,7 @@ Sigma1 = (I - K1 @ self.C) @ self.Sigma0
   &lt;img src=&quot;https://imgur.com/A37Dgsu.png&quot; width=&quot;220&quot; /&gt; 
 &lt;/p&gt;
 
-&lt;p&gt;This has been one of my favorite examples so far. In an ocassionally dishonest casino, we assume that every time we throw a die, there is a certain proabbility that the die will either be biased –in which case, the probability of landing a 6 is 5/10 and all other numbers 1/10–, or be unbiased, i.e., every number has an equal 1/6 probability. The goal was to use a Hidden Markov Model (HMM) to recover the times in which the die was biased given that we only have the history of the numbers that appeared under the throw of a dice:&lt;/p&gt;
+&lt;p&gt;This has been one of my favourite examples so far. In an occasionally dishonest casino, we assume that every time we throw a die, there is a certain probability that the die will either be biased –in which case, the probability of landing a 6 is 5/10 and all other numbers 1/10–, or be unbiased, i.e., every number has an equal 1/6 probability. The goal was to use a Hidden Markov Model (HMM) to recover the times in which the die was biased given that we only have the history of the numbers that appeared under the throw of a dice:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;x: 666333434452361543336162146653316146656663144434652652444446
 z: 222222221111111111111111111111111112222222222222222211111111
@@ -215,7 +215,7 @@ result = sample_filter_smooth(key, lds_instance, n_samples, True)
 &lt;h3 id=&quot;more-kalman-filtering-imaginary-eigenvalue-systems&quot;&gt;More Kalman Filtering: Imaginary-Eigenvalue systems&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&quot;https://imgur.com/aYxc01X.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;One final application of the Kalman Filters that I worked on these past week consists in modeling a linear dynamical system with imaginary eigenvalues. Even though the observations may seem to stem from a nonlinear system, the system stills follows a linear evoluation over time, it follows that the Kalman Filter should work, and so it does!&lt;/p&gt;
+&lt;p&gt;One final application of the Kalman Filters that I worked on these past week consists in modelling a linear dynamical system with imaginary eigenvalues. Even though the observations may seem to stem from a nonlinear system, the system stills follows a linear evolution over time, it follows that the Kalman Filter should work, and so it does!&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;&quot;&gt;spiral_kalman_filter.py&lt;/a&gt; (Currently under development)&lt;/li&gt;
