@@ -2,11 +2,11 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>/about</loc>
-<lastmod>2021-06-06T15:20:49+01:00</lastmod>
+<lastmod>2021-06-13T19:56:47+01:00</lastmod>
 </url>
 <url>
 <loc>/search</loc>
-<lastmod>2021-06-06T15:20:49+01:00</lastmod>
+<lastmod>2021-06-13T19:56:47+01:00</lastmod>
 </url>
 <url>
 <loc>/2019/12/20/naive-bayes</loc>
@@ -35,6 +35,10 @@
 <url>
 <loc>/2021/06/06/gsoc0</loc>
 <lastmod>2021-06-06T00:00:00+01:00</lastmod>
+</url>
+<url>
+<loc>/2021/06/13/gsoc1</loc>
+<lastmod>2021-06-13T00:00:00+01:00</lastmod>
 </url>
 <url>
 <loc>/</loc>
